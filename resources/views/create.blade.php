@@ -12,7 +12,8 @@
        
     </head>
     <body>
-    <h1>一覧ページ</h1>
-  
+        <div>
+            
+        </div>
     </body>
 </html>

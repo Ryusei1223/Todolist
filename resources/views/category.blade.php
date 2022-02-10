@@ -12,7 +12,14 @@
        
     </head>
     <body>
-    <h1>一覧ページ</h1>
-  
+        <div>
+            <h1>Todoリスト</h1>
+            <p class="add_category">[<a href="/add_category">⊕</a>]</p>
+            @foreach($categories as $category)
+                <div class = categories>
+                    <a href="/index/{{$category->id}}"><h2 class ="title">{{$category->title}}</h2></a>
+                </div>
+            @endforeach
+        </div>
     </body>
 </html>

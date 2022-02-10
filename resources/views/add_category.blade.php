@@ -12,7 +12,10 @@
        
     </head>
     <body>
-    <h1>一覧ページ</h1>
-  
+        <div>
+            <p>カテゴリ追加</p>
+            <textarea placeholder="カテゴリを入力してください"></textarea>
+            <button type="submit" value="実行">[<a href="/">back</a>]</button>
+        </div>
     </body>
 </html>

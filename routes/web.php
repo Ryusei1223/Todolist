@@ -10,5 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/','CategoryController@category');
+Route::get('/add_category','CategoryController@add_category');
+Route::get('/index','CategoryController@index');
 
-Route::get("/","PostController@index");
