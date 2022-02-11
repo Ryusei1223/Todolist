@@ -13,8 +13,9 @@
     </head>
     <body>
         <div>
-            <p>編集する</p>
-            <textarea placeholder="B社と面接"></textarea>
+            <p>本当に削除しますか？</p>
+            <p>はい</p>
+            <p>いいえ</p>
             <button type="submit" value="実行">[<a href="/">back</a>]</button>
         </div>
     </body>

@@ -16,12 +16,12 @@ class CategoryController extends Controller
     {
         $category = new Category;
         
-        return view("add_category");
+        return view("add_category")->with(["categories"=>$category->get()]);
     }
     public function index(Category $category)
     {
         $category = new Category;
         
-        return view("index");
+        return view("index")->with(["categories"=>$category->get()]);
     }
 }

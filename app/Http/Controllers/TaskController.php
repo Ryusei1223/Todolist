@@ -13,6 +13,15 @@ class TaskController extends Controller
         $task = new Task;
         return view("index")->with(["tasks"=>$task->get()]);
     }
+    public function edit(Task $task)
+    {
+        $task = new Task;
+        return view("edit")->with(["tasks"=>$task->get()]);
+    }
+    public function delete(Task $task)
+    {
+        $task = new Task;
+        return view("delete")->with(["tasks"=>$task->get()]);
+    }
 }
- 
  

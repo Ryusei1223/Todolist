@@ -12,5 +12,10 @@
 */
 Route::get('/','CategoryController@category');
 Route::get('/add_category','CategoryController@add_category');
-Route::get('/index','CategoryController@index');
+Route::get('/index/{task}','TaskController@index');
+Route::get('/index/{task}/edit','TaskController@edit');
+Route::get('/index/{task}/delete','TaskController@delete');
+
+
+
 
