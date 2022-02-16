@@ -4,24 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Task;
 
+
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index(Task $task)
+    public function index(Task $task,$id)
     {
         $task = new Task;
-        return view("index")->with(["tasks"=>$task->get()]);
+        
+        //categorys_idが$idと同じデータを抽出
+        return view("index",compact("id"))->with(["tasks"=>$task->where("categorys_id",$id)->get()]);
     }
     public function edit(Task $task)
     {
         $task = new Task;
-        return view("edit")->with(["tasks"=>$task->get()]);
+        return view("edit");
     }
     public function delete(Task $task)
     {
-        $task = new Task;
-        return view("delete")->with(["tasks"=>$task->get()]);
+        return view("delete");
     }
+    public function create(Task $task,$id)
+    {
+        
+        return view("create",compact("id"))->with(["tasks"=>$task->where("categorys_id",$id)->get()]);
+    }
+    public function store(Task $task,Request $request)
+    {
+       $input=$request["task"];
+       $task->fill($input)->save();
+       return redirect("/index/{{$task->categorys_id}}");
+    }
+
 }
  

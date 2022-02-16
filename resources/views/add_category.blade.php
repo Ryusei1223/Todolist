@@ -14,8 +14,11 @@
     <body>
         <div>
             <p>カテゴリ追加</p>
-            <textarea placeholder="カテゴリを入力してください"></textarea>
-            <button type="submit" value="実行">[<a href="/">back</a>]</button>
+            <form action = "/" method="POST">
+                {{csrf_field()}}
+                <input type="text" name ="category[title]"/>
+                <input type="submit" value="登録"/>
+            </form>
         </div>
     </body>
 </html>

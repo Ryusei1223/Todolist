@@ -12,16 +12,13 @@
        
     </head>
     <body>
-        <h1>一覧ページ</h1>
+        <p>新規作成</p>
+        <p >[<a href="/index/{{$id}}/create">⊕</a>]</p>
+        <p>編集</p>
+        <p>削除</p>
         @foreach($tasks as $task)
-                    <div class = tasks>
-                        <p>予定</p>
-                        <h2 class ="task">{{$task->task}}</h2>
-                        <p>期限日</p>
-                        <p class ="due_date">{{$task->due_date}}</p>
-                        <p>[<a href="/index/{{$task->id}}/edit">編集</a>]</p>
-                        <p>[<a href="/index/{{$task->id}}/delete">削除</a>]</p>
-                    </div>
+                        <h2>{{$task->task}}</h2>
+                        <p>{{$task->due_date}}</p>
         @endforeach
         <button type="submit" value="実行">[<a href="/">back</a>]</button>
   

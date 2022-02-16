@@ -14,14 +14,18 @@ class CategoryController extends Controller
     }
     public function add_category(Category $category)
     {
-        $category = new Category;
         
         return view("add_category")->with(["categories"=>$category->get()]);
     }
     public function index(Category $category)
     {
-        $category = new Category;
         
         return view("index")->with(["categories"=>$category->get()]);
+    }
+    public function store(Category $category,Request $request)
+    {
+       $input=$request["category"];
+       $category->fill($input)->save();
+       return redirect("/" .$category->id);
     }
 }
