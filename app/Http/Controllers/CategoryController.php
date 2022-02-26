@@ -8,24 +8,27 @@ class CategoryController extends Controller
 {
     public function category(Category $category)
     {
-        $category = new Category;
-        
         return view("category")->with(["categories"=>$category->get()]);
     }
-    public function add_category(Category $category)
+    public function add_category()
     {
-        
-        return view("add_category")->with(["categories"=>$category->get()]);
+        return view("add_category");
     }
     public function index(Category $category)
     {
         
         return view("index")->with(["categories"=>$category->get()]);
     }
+    public function destroy(Category $category)
+    {   
+        $category->delete();
+        return redirect("/");
+        
+    }
     public function store(Category $category,Request $request)
     {
        $input=$request["category"];
        $category->fill($input)->save();
-       return redirect("/" .$category->id);
+       return redirect("/");
     }
 }
