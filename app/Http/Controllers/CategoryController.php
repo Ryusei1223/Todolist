@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CategoryRequest;
 use App\Category;
+use App\Task;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function category(Category $category)
+    public function category(Category $category,Task $task)
     {
-        return view("category")->with(["categories"=>$category->get()]);
+        return view("category")->with(["categories"=>$category->get(),"tasks"=>$task->orderBy("due_date","ASC")->get()]);
     }
     public function add_category()
     {
@@ -25,7 +27,7 @@ class CategoryController extends Controller
         return redirect("/");
         
     }
-    public function store(Category $category,Request $request)
+    public function store(Category $category,CategoryRequest $request)
     {
        $input=$request["category"];
        $category->fill($input)->save();

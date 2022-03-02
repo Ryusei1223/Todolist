@@ -15,34 +15,55 @@
        
     </head>
     <body>
+        <h2 class="add_category"><a href="/add_category">⊕</a></h2>
+        
+                <div class="container">
+                    @foreach($categories as $category)
+                        <div class="row">
+                            <div class="col-2">
+                                <a href="categories/{{$category->id}}" class="category_name">
+                                    <h3 class ="title">{{$category->title}}</h3>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <form action="/categories/{{$category->id}}/delete" id="form_delete{{$category->id}}" method="POST" style="display:inline">
+                                    {{csrf_field()}}
+                                    {{method_field("delete")}}
+                                    
+                                    <input type ="submit" style="display:none">
+                                    
+                                    <p class ="delete">
+                                        <span onclick="return deleteCategory({{$category->id}});">⊖</span>
+                                    </p>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>                         
+                   
+                
+               
+        <table class="table" id=task_table>
+            <thead>
+                <tr>
+                      <th scope="col">予定一覧</th>
+                      <th scope="col">期限</th>
+                </tr>      
+            </thead>
+            <tbody>
+                @foreach($tasks as $task)
+                        <tr>    
+                                <td><p>{{$task->task}}</p></td>
+                            
+                                <td><p>{{$task->due_date}}</p></td>
+                        </tr>      
+                @endforeach
+            </tbody>
+        </table>
+            
         
            
-            <p class="add_category"><a href="/add_category">⊕</a></p>
-            @foreach($categories as $category)
-            
-            <div class="container">
-                <div class="row">
-                    <div class="col-3">
-                            <a href="categories/{{$category->id}}" class="category_name"><p class ="title">{{$category->title}}</p></a>
-                    </div>
-                    <div class="col">
-                            <form action="/categories/{{$category->id}}/delete" id="form_delete{{$category->id}}" method="POST" style="display:inline">
-                                        {{csrf_field()}}
-                                        {{method_field("delete")}}
-                                        <input type ="submit" style="display:none">
-                                        <p class ="delete"><span onclick="return deleteCategory({{$category->id}});">⊖</span></p>
-                            </form>
-                    </div>
-                </div>
-            </div>
-                
-            @endforeach
-            
-            
-        
-            <div class="all_task">
-                
-            </div>
             <script>
                 function deleteCategory(categoryId){
                     "use strict";

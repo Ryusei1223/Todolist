@@ -17,46 +17,41 @@
     <body>
         <div>
             <a href="/categories/{{$category}}/create">⊕</a>
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-5">
-                          予定
-                        </div>
-                        <div class="col">
-                          期限
-                        </div>
-                        <div class="col-0.1">
-                          編集
-                        </div>
-                        <div class="col">
-                          削除
-                        </div>
-                      </div>
-                    </div>
-            <br>
-            @foreach($tasks as $task)
-                        <div class = "container">
-                            <div class = "row">
-                                <div class ="col-5">
-                                    <p>{{$task->task}}</p>
-                                </div>
-                                <div class="col">
-                                    <p>{{$task->due_date}}</p>
-                                </div>
-                                <div class="col-0.1">
-                                    <p><a href="/categories/{{$task->categories_id}}/tasks/{{$task->id}}/edit">編集</a></p>
-                                </div>
-                                <div class="col">
-                                    <form action="/categories/{{$task->categories_id}}/tasks/{{$task->id}}" id="form_delete{{$task->id}}" method="POST" style="display:inline">
-                                        {{csrf_field()}}
-                                        {{method_field("delete")}}
-                                        <input type ="submit" style="display:none">
-                                        <p class ="delete"><span onclick="return deleteTask({{$task->id}});">削除</span></p>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-            @endforeach
+             <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">予定</th>
+                      
+                        <th scope="col">期限</th>
+                     
+                        <th scope="col">編集</th>
+                        
+                        <th scope="col">削除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        
+                        @foreach($tasks as $task)
+                        <tr>  
+                            <td>{{$task->task}}</td>
+                                           
+                            <td>{{$task->due_date}}</td>
+                                           
+                            <td><a href="/categories/{{$task->categories_id}}/tasks/{{$task->id}}/edit">編集</a></td>
+                                           
+                            <td> <form action="/categories/{{$task->categories_id}}/tasks/{{$task->id}}" id="form_delete{{$task->id}}" method="POST" style="display:inline">
+                                    {{csrf_field()}}
+                                    {{method_field("delete")}}
+                                    <input type ="submit" style="display:none">
+                                    <p class ="delete"><span onclick="return deleteTask({{$task->id}});">削除</span></p>
+                                </form>
+                            </td>
+                        <tr>  
+                        @endforeach
+                    
+                </tbody>
+            </table>
+                    
             <button type="submit" value="実行"><a href="/">戻る</a></button>
             <script>
                 function deleteTask(taskId){

@@ -17,18 +17,18 @@
     </head>
     <body>
         <div>
-            <p>編集する</p>
+            <p>編集</p>
             <form action ="/categories/{{$category}}/tasks/{{$task->id}}" method="POST">
                 {{@csrf_field()}}
                 {{ method_field('PUT') }}
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">予定</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="{{$task->task}}" name="task[task]" value="{{$task->task}}"/>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="予定を入力してください" name="task[task]" value="{{$task->task}}"/>
                 </div>
                 <br>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">期限</label>
-                    <input type = "datetime-local" class="form-control" id="exampleFormControlInput1" placeholder="{{$task->name}}" name="task[due_date]" value="{{$task->due_date}}"/>
+                    <input type = "datetime-local" class="form-control" id="exampleFormControlInput1"  name="task[due_date]" value="{{$task->due_date}}"/>
                 </div>
                 <br>
                 <input type="submit" value="変更"/>

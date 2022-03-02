@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\TaskRequest;
 
 use App\Task;
+use App\Category;
 
 
 use Illuminate\Http\Request;
@@ -31,7 +33,7 @@ class TaskController extends Controller
         
         return view("create",compact("category"));
     }
-    public function store(Task $task,Request $request,$category)
+    public function store(Task $task,TaskRequest $request,$category)
     {
        $input=$request["task"];
        $task->fill($input)->save();
