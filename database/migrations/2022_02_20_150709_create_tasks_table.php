@@ -17,7 +17,9 @@ class CreateTasksTable extends Migration
             $table->bigIncrements('id');
             $table->string("task",100);
             $table->string("due_date",20);
+            $table->integer("categories_id")->unsigned();
             $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 

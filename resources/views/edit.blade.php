@@ -1,8 +1,12 @@
+@extends('layouts.app')　　　　　　　　　　　　　　　　　　
+
+@section('content')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
         <title>Todoリスト</title>
 
@@ -13,9 +17,24 @@
     </head>
     <body>
         <div>
-            <p>編集する</p>
-            <textarea placeholder="B社と面接"></textarea>
-            <button type="submit" value="実行">[<a href="/">back</a>]</button>
+            <p>編集</p>
+            <form action ="/categories/{{$category}}/tasks/{{$task->id}}" method="POST">
+                {{@csrf_field()}}
+                {{ method_field('PUT') }}
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">予定</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="予定を入力してください" name="task[task]" value="{{$task->task}}"/>
+                </div>
+                <br>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">期限</label>
+                    <input type = "datetime-local" class="form-control" id="exampleFormControlInput1"  name="task[due_date]" value="{{$task->due_date}}"/>
+                </div>
+                <br>
+                <input type="submit" value="変更"/>
+            </form>
+            <button type="submit"><a href="/categories/{{$category}}">戻る</a></button>
         </div>
     </body>
 </html>
+@endsection
